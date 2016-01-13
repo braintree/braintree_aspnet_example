@@ -12,11 +12,12 @@ namespace BraintreeASPExampleTests
         public void TestConfiguringGateway()
         {
             BraintreeConfiguration config = new BraintreeConfiguration();
+            var gateway = config.getGateway();
 
-            Assert.AreEqual(config.gateway.Environment, Braintree.Environment.SANDBOX);
-            Assert.AreEqual(config.gateway.MerchantId, "MerchantId");
-            Assert.AreEqual(config.gateway.PublicKey, "PublicKey");
-            Assert.AreEqual(config.gateway.PrivateKey, "PrivateKey");
+            Assert.AreEqual(gateway.Environment, Braintree.Environment.SANDBOX);
+            Assert.AreEqual(gateway.MerchantId, "MerchantId");
+            Assert.AreEqual(gateway.PublicKey, "PublicKey");
+            Assert.AreEqual(gateway.PrivateKey, "PrivateKey");
         }
     }
 }

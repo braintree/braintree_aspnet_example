@@ -8,25 +8,21 @@ using System.Xml;
 
 namespace BraintreeASPExample
 {
-    public class BraintreeConfiguration
+    public class BraintreeConfiguration : IBraintreeConfiguration
     {
         public Braintree.Environment Environment { get; set; }
         public string MerchantId { get; set; }
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
-        public BraintreeGateway gateway { get; private set; }
+        private IBraintreeGateway gateway { get; set; }
 
-        public BraintreeConfiguration() {
-            createGateway();
-        }
-
-        private void createGateway() {
+        public IBraintreeGateway createGateway() {
             Environment = getEnvironment();
             MerchantId = getConfigurationSetting("BraintreeMerchantId");
             PublicKey = getConfigurationSetting("BraintreePublicKey");
             PrivateKey = getConfigurationSetting("BraintreePrivateKey");
 
-            gateway = new BraintreeGateway
+            return new BraintreeGateway
             {
                 Environment = Environment,
                 MerchantId = MerchantId,
@@ -35,15 +31,25 @@ namespace BraintreeASPExample
             };
         }
 
-        private String getConfigurationSetting(String setting)
+        public String getConfigurationSetting(String setting)
         {
             return ConfigurationManager.AppSettings[setting];
         }
 
-        private Braintree.Environment getEnvironment()
+        public Braintree.Environment getEnvironment()
         {
             String environment = getConfigurationSetting("BraintreeEnvironment");
             return environment == "production" ? Braintree.Environment.PRODUCTION : Braintree.Environment.SANDBOX;
+        }
+
+        public IBraintreeGateway getGateway()
+        {
+            if (gateway == null)
+            {
+                gateway = createGateway();
+            }
+
+            return gateway;
         }
     }
 }
