@@ -22,7 +22,7 @@ namespace BraintreeASPExample.Controllers
         public ActionResult Create()
         {
             var gateway = config.getGateway();
-            Decimal amount = Convert.ToDecimal(Request["amount"]); // In production you should not take amouts directly from clients
+            Decimal amount = Convert.ToDecimal(Request["amount"]); // In production you should not take amounts directly from clients
             var nonce = Request["payment_method_nonce"];
             var request = new TransactionRequest
             {
