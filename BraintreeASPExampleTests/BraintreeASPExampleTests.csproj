@@ -37,9 +37,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Braintree-2.52.0, Version=2.52.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Braintree.2.52.0\lib\Braintree-2.52.0.dll</HintPath>
+    <Reference Include="Braintree-2.53.0">
+      <HintPath>..\packages\Braintree.2.53.0\lib\Braintree-2.53.0.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
