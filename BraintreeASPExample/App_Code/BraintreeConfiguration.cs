@@ -31,14 +31,14 @@ namespace BraintreeASPExample
             };
         }
 
-        public String getConfigurationSetting(String setting)
+        public string getConfigurationSetting(string setting)
         {
             return ConfigurationManager.AppSettings[setting];
         }
 
         public Braintree.Environment getEnvironment()
         {
-            String environment = getConfigurationSetting("BraintreeEnvironment");
+            string environment = getConfigurationSetting("BraintreeEnvironment");
             return environment == "production" ? Braintree.Environment.PRODUCTION : Braintree.Environment.SANDBOX;
         }
 
