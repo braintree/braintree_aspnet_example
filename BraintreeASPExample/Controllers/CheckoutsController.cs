@@ -31,8 +31,29 @@ namespace BraintreeASPExample.Controllers
             };
 
             Result<Transaction> result = gateway.Transaction.Sale(request);
-            Transaction transaction = result.Target;
-            return RedirectToAction("Show", new { id = transaction.Id });
+            if (result.IsSuccess())
+            {
+                Transaction transaction = result.Target;
+                return RedirectToAction("Show", new { id = transaction.Id });
+            }
+            else if (result.Transaction != null)
+            {
+                Transaction transaction = result.Transaction;
+                var transactionStatus = "Transaction status - " + transaction.Status;
+                TempData["Flash"] = transactionStatus;
+                return RedirectToAction("Show", new { id = transaction.Id } );
+            }
+            else
+            {
+                string errorMessages = "";
+                foreach (ValidationError error in result.Errors.DeepAll())
+                {
+                    errorMessages += "Error: " + (int)error.Code + " - " + error.Message + "\n";
+                }
+                TempData["Flash"] = errorMessages;
+                return RedirectToAction("New");
+            }
+
         }
 
         public ActionResult Show(String id)

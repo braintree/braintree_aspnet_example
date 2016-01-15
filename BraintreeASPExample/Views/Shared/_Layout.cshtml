@@ -6,6 +6,13 @@
     <title>BraintreeASPExample</title>
 </head>
 <body>
+    @{
+        string flash = TempData["Flash"] as string;
+        if (flash != null)
+        {
+            <div>@flash</div>
+        }
+    }
     @RenderBody()
 </body>
 </html>
