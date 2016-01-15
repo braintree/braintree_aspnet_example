@@ -2,7 +2,7 @@
 An example Braintree integration for ASP.NET
 
 ## Setup Instructions
-These instructions assume you are using Visual Studio Professional 2013. This has not been tested in Xamarin Studio, or other verisons of Visual Studio. This project is also set up 
+These instructions assume you are using Visual Studio Professional 2013. This has not been tested in Xamarin Studio, or other versions of Visual Studio. This project is also set up
 to use NuGet package restore, so all dependencies should be automatically installed.
 
 1. Open `braintree_aspnet_example.sln` in Visual Studio
@@ -10,29 +10,17 @@ to use NuGet package restore, so all dependencies should be automatically instal
 2. Open the `Web.config` in `BraintreeASPExample`, and fill in your Braintree API Credentials in the `BraintreeEnvironment`, `BraintreeMerchantId`, `BraintreePublicKey`, and `BraintreePrivateKey` keys.
    Credentials can be found by navigating to Account > My user > View API Keys in the Braintree control panel. Full instructions can be [found on our support site](https://articles.braintreepayments.com/control-panel/important-gateway-credentials#api-credentials).
 
-3. Start rails
-   `rails server`
+3. Start the project by pressing the play button in the toolbar.
 
 ## Running Tests
 
-### Running Unit Tests
-
-Unit tests do not make api calls to Braintree and do not require Braintree credentials. You can run this project's unit tests by
-calling `rake` on the command line.
-
-### Running Integration Tests
-
-Integration tests make api calls to Braintree and require that you set up your Braintree credentials. You can run this project's integration tests by adding your sandbox api credentials to `.env` and calling `rake spec:integration` on the command line.
-
-### Running All Tests
-
-You can run both unit and integrations tests by calling `rake spec` on the command line.
+All tests are unit tests. You can run them by opening the Test Explorer and clicking `Run All`.
 
 ## Pro Tips
 
- * If you do not want to use NuGet package restore, make sure to install the following packages from NuGet:
-   * Braintree 2.53.0 or higher
-   * Moq 3.0 or higher (needed for `BraintreeASPExampleTests` only)
+ * If you do not want to or are unable to use NuGet package restore, make sure to download and reference the following packages:
+   * [Braintree](https://developers.braintreepayments.com/start/hello-server/dotnet#install-and-configure) or higher
+   * [Moq](https://github.com/Moq/moq4) 4.2 or higher (needed for `BraintreeASPExampleTests` only)
 
 ## Disclaimer
 
