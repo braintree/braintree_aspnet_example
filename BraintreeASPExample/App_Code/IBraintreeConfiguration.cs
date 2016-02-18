@@ -9,9 +9,9 @@ namespace BraintreeASPExample
 {
     public interface IBraintreeConfiguration
     {
-        IBraintreeGateway createGateway();
-        string getConfigurationSetting(string setting);
-        Braintree.Environment getEnvironment();
-        IBraintreeGateway getGateway();
+        IBraintreeGateway CreateGateway();
+        string GetConfigurationSetting(string setting);
+        Braintree.Environment GetEnvironment();
+        IBraintreeGateway GetGateway();
     }
 }

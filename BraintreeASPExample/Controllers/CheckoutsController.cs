@@ -13,7 +13,7 @@ namespace BraintreeASPExample.Controllers
 
         public ActionResult New()
         {
-            var gateway = config.getGateway();
+            var gateway = config.GetGateway();
             var clientToken = gateway.ClientToken.generate();
             ViewBag.ClientToken = clientToken;
             return View();
@@ -21,7 +21,7 @@ namespace BraintreeASPExample.Controllers
 
         public ActionResult Create()
         {
-            var gateway = config.getGateway();
+            var gateway = config.GetGateway();
             Decimal amount = Convert.ToDecimal(Request["amount"]); // In production you should not take amounts directly from clients
             var nonce = Request["payment_method_nonce"];
             var request = new TransactionRequest
@@ -58,7 +58,7 @@ namespace BraintreeASPExample.Controllers
 
         public ActionResult Show(String id)
         {
-            var gateway = config.getGateway();
+            var gateway = config.GetGateway();
             Transaction transaction = gateway.Transaction.Find(id);
             ViewBag.Transaction = transaction;
             return View();

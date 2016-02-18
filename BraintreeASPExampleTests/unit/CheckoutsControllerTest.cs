@@ -21,7 +21,7 @@ namespace BraintreeASPExampleTests
             var braintreeGatewayMock = new Mock<BraintreeGateway>();
             braintreeGatewayMock.Setup(mock => mock.ClientToken).Returns(clientTokenMock.Object);
             var braintreeConfigurationMock = new Mock<IBraintreeConfiguration>();
-            braintreeConfigurationMock.Setup(mock => mock.getGateway()).Returns(braintreeGatewayMock.Object);
+            braintreeConfigurationMock.Setup(mock => mock.GetGateway()).Returns(braintreeGatewayMock.Object);
 
             var controller = new BraintreeASPExample.Controllers.CheckoutsController();
             controller.config = braintreeConfigurationMock.Object;

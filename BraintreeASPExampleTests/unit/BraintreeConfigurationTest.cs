@@ -12,7 +12,7 @@ namespace BraintreeASPExampleTests
         public void TestConfiguringGateway()
         {
             BraintreeConfiguration config = new BraintreeConfiguration();
-            var gateway = config.getGateway();
+            var gateway = config.GetGateway();
 
             Assert.AreEqual(gateway.Environment, Braintree.Environment.SANDBOX);
             Assert.AreEqual(gateway.MerchantId, "MerchantId");

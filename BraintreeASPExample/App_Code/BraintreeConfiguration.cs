@@ -14,13 +14,13 @@ namespace BraintreeASPExample
         public string MerchantId { get; set; }
         public string PublicKey { get; set; }
         public string PrivateKey { get; set; }
-        private IBraintreeGateway gateway { get; set; }
+        private IBraintreeGateway BraintreeGateway { get; set; }
 
-        public IBraintreeGateway createGateway() {
-            Environment = getEnvironment();
-            MerchantId = getConfigurationSetting("BraintreeMerchantId");
-            PublicKey = getConfigurationSetting("BraintreePublicKey");
-            PrivateKey = getConfigurationSetting("BraintreePrivateKey");
+        public IBraintreeGateway CreateGateway() {
+            Environment = GetEnvironment();
+            MerchantId = GetConfigurationSetting("BraintreeMerchantId");
+            PublicKey = GetConfigurationSetting("BraintreePublicKey");
+            PrivateKey = GetConfigurationSetting("BraintreePrivateKey");
 
             return new BraintreeGateway
             {
@@ -31,25 +31,25 @@ namespace BraintreeASPExample
             };
         }
 
-        public string getConfigurationSetting(string setting)
+        public string GetConfigurationSetting(string setting)
         {
             return ConfigurationManager.AppSettings[setting];
         }
 
-        public Braintree.Environment getEnvironment()
+        public Braintree.Environment GetEnvironment()
         {
-            string environment = getConfigurationSetting("BraintreeEnvironment");
+            string environment = GetConfigurationSetting("BraintreeEnvironment");
             return environment == "production" ? Braintree.Environment.PRODUCTION : Braintree.Environment.SANDBOX;
         }
 
-        public IBraintreeGateway getGateway()
+        public IBraintreeGateway GetGateway()
         {
-            if (gateway == null)
+            if (BraintreeGateway == null)
             {
-                gateway = createGateway();
+                BraintreeGateway = CreateGateway();
             }
 
-            return gateway;
+            return BraintreeGateway;
         }
     }
 }
