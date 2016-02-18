@@ -10,9 +10,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BraintreeASPExampleTests
 {
-    /// <summary>
-    /// Summary description for CheckoutsControllerTest
-    /// </summary>
     [TestClass]
     public class CheckoutsControllerTest
     {
