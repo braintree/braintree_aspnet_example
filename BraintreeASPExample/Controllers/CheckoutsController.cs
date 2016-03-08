@@ -22,7 +22,18 @@ namespace BraintreeASPExample.Controllers
         public ActionResult Create()
         {
             var gateway = config.GetGateway();
-            Decimal amount = Convert.ToDecimal(Request["amount"]); // In production you should not take amounts directly from clients
+            Decimal amount;
+
+            try
+            {
+                amount = Convert.ToDecimal(Request["amount"]);
+            }
+            catch (FormatException e)
+            {
+                TempData["Flash"] = "Error: 81503: Amount is an invalid format.";
+                return RedirectToAction("New");
+            }
+
             var nonce = Request["payment_method_nonce"];
             var request = new TransactionRequest
             {
