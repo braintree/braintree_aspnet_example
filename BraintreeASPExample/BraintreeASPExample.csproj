@@ -130,6 +130,31 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App_Themes\css\app.css" />
+    <Content Include="App_Themes\css\overrides.css" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Bold.svg" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Medium.svg" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Regular.svg" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Bold-webfont.svg" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Light-webfont.svg" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Regular-webfont.svg" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.svg" />
+    <Content Include="App_Themes\images\bt-drop-in-placeholder.png" />
+    <Content Include="App_Themes\images\cards\amex.svg" />
+    <Content Include="App_Themes\images\cards\discover.svg" />
+    <Content Include="App_Themes\images\cards\mastercard.svg" />
+    <Content Include="App_Themes\images\cards\visa.svg" />
+    <Content Include="App_Themes\images\check.svg" />
+    <Content Include="App_Themes\images\fail.svg" />
+    <Content Include="App_Themes\images\favicon.png" />
+    <Content Include="App_Themes\images\paypal-demo.svg" />
+    <Content Include="App_Themes\images\paypal.svg" />
+    <Content Include="App_Themes\images\pseudoshop.svg" />
+    <Content Include="App_Themes\images\success.svg" />
+    <Content Include="App_Themes\javascript\demo.js" />
+    <Content Include="App_Themes\javascript\response.js" />
+    <Content Include="App_Themes\javascript\vendor\jquery-2.1.4.min.js" />
+    <Content Include="App_Themes\javascript\vendor\jquery.lettering-0.6.1.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -159,6 +184,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Checkouts\Show.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\css\app.css.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Bold.eot" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Bold.woff" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Bold.woff2" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Medium.eot" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Medium.woff" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Medium.woff2" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Regular.eot" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Regular.woff" />
+    <Content Include="App_Themes\fonts\bt-mono\bt-mono-Regular.woff2" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Bold-webfont.eot" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Bold-webfont.ttf" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Bold-webfont.woff" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Light-webfont.eot" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Light-webfont.ttf" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Light-webfont.woff" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Regular-webfont.eot" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Regular-webfont.ttf" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Regular-webfont.woff" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.eot" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.ttf" />
+    <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
