@@ -59,10 +59,7 @@ namespace BraintreeASPExample.Controllers
             }
             else if (result.Transaction != null)
             {
-                Transaction transaction = result.Transaction;
-                var transactionStatus = "Transaction status - " + transaction.Status;
-                TempData["Flash"] = transactionStatus;
-                return RedirectToAction("Show", new { id = transaction.Id } );
+                return RedirectToAction("Show", new { id = result.Transaction.Id } );
             }
             else
             {
