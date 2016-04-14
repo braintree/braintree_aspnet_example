@@ -76,7 +76,6 @@ namespace BraintreeASPExample.Controllers
 
         public ActionResult Show(String id)
         {
-            string header, icon, message;
             var gateway = config.GetGateway();
             Transaction transaction = gateway.Transaction.Find(id);
 
