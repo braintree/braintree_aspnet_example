@@ -1,118 +1,155 @@
-﻿<h1>Transaction @ViewBag.Transaction.Id</h1>
-<h2>Details</h2>
-<p>
-    <table>
-        <tr>
-            <th>Property</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>@ViewBag.Transaction.Id</td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td>@ViewBag.Transaction.Type</td>
-        </tr>
-        <tr>
-            <td>amount</td>
-            <td>@ViewBag.Transaction.Amount</td>
-        </tr>
-        <tr>
-            <td>status</td>
-            <td>@ViewBag.Transaction.Status</td>
-        </tr>
-        <tr>
-            <td>created_at</td>
-            <td>@ViewBag.Transaction.CreatedAt</td>
-        </tr>
-        <tr>
-            <td>updated_at</td>
-            <td>@ViewBag.Transaction.UpdatedAt</td>
-        </tr>
-    </table>
-</p>
+﻿<div class="wrapper">
+    <div class="response container">
+        <div class="content">
+            <div class="icon">
+                <img src="@Url.Content(String.Format("/App_Themes/images/{0}.svg", TempData["icon"]))" alt ="">
+            </div>
 
-<h2>Credit Card Details</h2>
-<p>
-    <table>
-        <tr>
-            <th>Property</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>token</td>
-            <td>@ViewBag.Transaction.CreditCard.Token</td>
-        </tr>
-        <tr>
-            <td>bin</td>
-            <td>@ViewBag.Transaction.CreditCard.Bin</td>
-        </tr>
-        <tr>
-            <td>last_4</td>
-            <td>@ViewBag.Transaction.CreditCard.LastFour</td>
-        </tr>
-        <tr>
-            <td>card_type</td>
-            <td>@ViewBag.Transaction.CreditCard.CardType</td>
-        </tr>
-        <tr>
-            <td>expiration_date</td>
-            <td>@ViewBag.Transaction.CreditCard.ExpirationDate</td>
-        </tr>
-        <tr>
-            <td>cardholder_name</td>
-            <td>@ViewBag.Transaction.CreditCard.CardholderName</td>
-        </tr>
-        <tr>
-            <td>customer_location</td>
-            <td>@ViewBag.Transaction.CreditCard.CustomerLocation</td>
-        </tr>
-    </table>
-</p>
+            <h1>@TempData["header"].ToString()</h1>
+            <section>
+                <p>@TempData["message"].ToString()</p>
+            </section>
 
-<h2>Customer Details</h2>
-<p>
-    <table>
-        <tr>
-            <th>Property</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>@ViewBag.Transaction.Customer.Id</td>
-        </tr>
-        <tr>
-            <td>first_name</td>
-            <td>@ViewBag.Transaction.Customer.FirstName</td>
-        </tr>
-        <tr>
-            <td>last_name</td>
-            <td>@ViewBag.Transaction.Customer.LastName</td>
-        </tr>
-        <tr>
-            <td>email</td>
-            <td>@ViewBag.Transaction.Customer.Email</td>
-        </tr>
-        <tr>
-            <td>company</td>
-            <td>@ViewBag.Transaction.Customer.Company</td>
-        </tr>
-        <tr>
-            <td>website</td>
-            <td>@ViewBag.Transaction.Customer.Website</td>
-        </tr>
-        <tr>
-            <td>phone</td>
-            <td>@ViewBag.Transaction.Customer.Phone</td>
-        </tr>
-        <tr>
-            <td>fax</td>
-            <td>@ViewBag.Transaction.Customer.Fax</td>
-        </tr>
-    </table>
-</p>
+            <section>
+                <a class="button primary back" href="/checkouts/new">
+                    <span>Test Another Transaction</span>
+                </a>
+            </section>
+        </div>
+    </div>
+</div>
 
-<p>
-    <a href="/checkouts">Return to checkout page</a>
-</p>
+<aside class="drawer dark">
+    <header>
+        <div class="content compact">
+            <a href="https://developers.braintreepayments.com" class="braintree" target="_blank">Braintree</a>
+            <h3>API Response</h3>
+        </div>
+    </header>
+
+    <article class="content compact">
+        <section>
+            <h5>Transaction</h5>
+            <table cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>@ViewBag.Transaction.Id</td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>@ViewBag.Transaction.Type</td>
+                    </tr>
+                    <tr>
+                        <td>amount</td>
+                        <td>@ViewBag.Transaction.Amount</td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td>@ViewBag.Transaction.Status</td>
+                    </tr>
+                    <tr>
+                        <td>created_at</td>
+                        <td>@ViewBag.Transaction.CreatedAt</td>
+                    </tr>
+                    <tr>
+                        <td>updated_at</td>
+                        <td>@ViewBag.Transaction.UpdatedAt</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h5>Payment</h5>
+
+            <table cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>token</td>
+                        <td>@ViewBag.Transaction.CreditCard.Token</td>
+                    </tr>
+                    <tr>
+                        <td>bin</td>
+                        <td>@ViewBag.Transaction.CreditCard.Bin</td>
+                    </tr>
+                    <tr>
+                        <td>last_4</td>
+                        <td>@ViewBag.Transaction.CreditCard.LastFour</td>
+                    </tr>
+                    <tr>
+                        <td>card_type</td>
+                        <td>@ViewBag.Transaction.CreditCard.CardType</td>
+                    </tr>
+                    <tr>
+                        <td>expiration_date</td>
+                        <td>@ViewBag.Transaction.CreditCard.ExpirationDate</td>
+                    </tr>
+                    <tr>
+                        <td>cardholder_name</td>
+                        <td>@ViewBag.Transaction.CreditCard.CardholderName</td>
+                    </tr>
+                    <tr>
+                        <td>customer_location</td>
+                        <td>@ViewBag.Transaction.CreditCard.CustomerLocation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        @{
+            if (@ViewBag.Transaction.Customer.Id != null) 
+            {
+                <section>
+                    <h5>Customer Details</h5>
+                    <table cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td>id</td>
+                                <td>@ViewBag.Transaction.Customer.Id</td>
+                            </tr>
+                            <tr>
+                                <td>first_name</td>
+                                <td>@ViewBag.Transaction.Customer.FirstName</td>
+                            </tr>
+                            <tr>
+                                <td>last_name</td>
+                                <td>@ViewBag.Transaction.Customer.LastName</td>
+                            </tr>
+                            <tr>
+                                <td>email</td>
+                                <td>@ViewBag.Transaction.Customer.Email</td>
+                            </tr>
+                            <tr>
+                                <td>company</td>
+                                <td>@ViewBag.Transaction.Customer.Company</td>
+                            </tr>
+                            <tr>
+                                <td>website</td>
+                                <td>@ViewBag.Transaction.Customer.Website</td>
+                            </tr>
+                            <tr>
+                                <td>phone</td>
+                                <td>@ViewBag.Transaction.Customer.Phone</td>
+                            </tr>
+                            <tr>
+                                <td>fax</td>
+                                <td>@ViewBag.Transaction.Customer.Fax</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            }
+        }
+
+        <section>
+            <p class="center small">Integrate with the Braintree SDK for a secure and seamless checkout</p>
+        </section>
+
+        <section>
+            <a class="button secondary full" href="https://developers.braintreepayments.com/guides/drop-in" target="_blank">
+                <span>See the Docs</span>
+            </a>
+        </section>
+    </article>
+</aside>
