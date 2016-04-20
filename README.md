@@ -23,6 +23,12 @@ There are unit and integration tests. To run the integration tests, you will nee
    * [Moq](https://github.com/Moq/moq4) 4.2 or higher (needed for `BraintreeASPExampleTests` only)
    * [Selenium WebDriver](https://www.seleniumhq.org/download) 2.52 or higher (needed for `BraintreeASPExampleTests` only)
 
+## Help
+
+ * Found a bug? Hava a suggestion for improvement? Want to tell us we're awesome? [Submit an issue](https://github.com/braintree/braintree_rails_example/issues)
+ * Trouble with your integration? Contact [Braintree Support](https://support.braintreepayments.com/) / support@braintreepayments.com
+ * Want to contribute? [Submit a pull request](https://help.github.com/articles/creating-a-pull-request)
+
 ## Disclaimer
 
 This code is provided as is and is only intended to be used for illustration purposes. This code is not production-ready and is not meant to be used in a production environment. This repository is to be used as a tool to help merchants learn how to integrate with Braintree. Any use of this repository or any of its code in a production environment is highly discouraged.
