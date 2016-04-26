@@ -1,14 +1,14 @@
 ﻿# Braintree ASP.NET Example
-An example Braintree integration for ASP.NET
+An example Braintree integration for ASP.NET.
 
 ## Setup Instructions
 These instructions assume you are using Visual Studio Professional 2013. This has not been tested in Xamarin Studio, or other versions of Visual Studio. This project is also set up
 to use NuGet package restore, so all dependencies should be automatically installed.
 
-1. Open `braintree_aspnet_example.sln` in Visual Studio
+1. Open `braintree_aspnet_example.sln` in Visual Studio.
 
 2. Open the `Web.config` in `BraintreeASPExample`, and fill in your Braintree API Credentials in the `BraintreeEnvironment`, `BraintreeMerchantId`, `BraintreePublicKey`, and `BraintreePrivateKey` keys.
-   Credentials can be found by navigating to Account > My user > View API Keys in the Braintree control panel. Full instructions can be [found on our support site](https://articles.braintreepayments.com/control-panel/important-gateway-credentials#api-credentials).
+   Credentials can be found by navigating to Account > My User > View Authorizations in the Braintree Control Panel. Full instructions can be [found on our support site](https://articles.braintreepayments.com/control-panel/important-gateway-credentials#api-credentials).
 
 3. Start the project by pressing the play button in the toolbar.
 
