@@ -17,10 +17,22 @@ namespace BraintreeASPExample
         private IBraintreeGateway BraintreeGateway { get; set; }
 
         public IBraintreeGateway CreateGateway() {
-            Environment = GetEnvironment();
-            MerchantId = GetConfigurationSetting("BraintreeMerchantId");
-            PublicKey = GetConfigurationSetting("BraintreePublicKey");
-            PrivateKey = GetConfigurationSetting("BraintreePrivateKey");
+            string environment = System.Environment.GetEnvironmentVariable("BraintreeEnvironment");
+
+            Environment = GetEnvironment(environment);
+            MerchantId = System.Environment.GetEnvironmentVariable("BraintreeMerchantId");
+            PublicKey = System.Environment.GetEnvironmentVariable("BraintreePublicKey");
+            PrivateKey = System.Environment.GetEnvironmentVariable("BraintreePrivateKey");
+
+            if (MerchantId == null || PublicKey == null || PrivateKey == null)
+            {
+                environment = GetConfigurationSetting("BraintreeEnvironment");
+
+                Environment = GetEnvironment(environment);
+                MerchantId = GetConfigurationSetting("BraintreeMerchantId");
+                PublicKey = GetConfigurationSetting("BraintreePublicKey");
+                PrivateKey = GetConfigurationSetting("BraintreePrivateKey");
+            }
 
             return new BraintreeGateway
             {
@@ -36,9 +48,8 @@ namespace BraintreeASPExample
             return ConfigurationManager.AppSettings[setting];
         }
 
-        public Braintree.Environment GetEnvironment()
+        public Braintree.Environment GetEnvironment(string environment)
         {
-            string environment = GetConfigurationSetting("BraintreeEnvironment");
             return environment == "production" ? Braintree.Environment.PRODUCTION : Braintree.Environment.SANDBOX;
         }
 
