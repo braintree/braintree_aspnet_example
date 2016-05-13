@@ -11,7 +11,6 @@ namespace BraintreeASPExample
     {
         IBraintreeGateway CreateGateway();
         string GetConfigurationSetting(string setting);
-        Braintree.Environment GetEnvironment(string environment);
         IBraintreeGateway GetGateway();
     }
 }
