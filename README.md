@@ -19,7 +19,7 @@ There are unit and integration tests. To run the integration tests, you will nee
 ## Pro Tips
 
  * If you do not want to or are unable to use NuGet package restore, make sure to download and reference the following packages:
-   * [Braintree](https://developers.braintreepayments.com/start/hello-server/dotnet#install-and-configure) 2.53.0 or higher
+   * [Braintree](https://developers.braintreepayments.com/start/hello-server/dotnet#install-and-configure) 2.59.0 or higher
    * [Moq](https://github.com/Moq/moq4) 4.2 or higher (needed for `BraintreeASPExampleTests` only)
    * [Selenium WebDriver](https://www.seleniumhq.org/download) 2.52 or higher (needed for `BraintreeASPExampleTests` only)
 
