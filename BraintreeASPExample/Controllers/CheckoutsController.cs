@@ -48,7 +48,11 @@ namespace BraintreeASPExample.Controllers
             var request = new TransactionRequest
             {
                 Amount = amount,
-                PaymentMethodNonce = nonce
+                PaymentMethodNonce = nonce,
+                Options = new TransactionOptionsRequest
+                {
+                    SubmitForSettlement = true
+                }
             };
 
             Result<Transaction> result = gateway.Transaction.Sale(request);
