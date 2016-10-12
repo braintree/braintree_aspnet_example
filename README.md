@@ -16,6 +16,10 @@ to use NuGet package restore, so all dependencies should be automatically instal
 
 There are unit and integration tests. To run the integration tests, you will need to have IIS Express and Firefox installed and your API credentials filled in. You can run all the tests by opening the Test Explorer and clicking `Run All`.
 
+## Testing Transactions
+
+Sandbox transactions must be made with [sample credit card numbers](https://developers.braintreepayments.com/reference/general/testing/dotnet#credit-card-numbers), and the response of a `Transaction.Sale()` call is dependent on the [amount of the transaction](https://developers.braintreepayments.com/reference/general/testing/dotnet#test-amounts).
+
 ## Pro Tips
 
  * If you do not want to or are unable to use NuGet package restore, make sure to download and reference the following packages:
