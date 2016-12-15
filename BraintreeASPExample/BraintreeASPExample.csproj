@@ -43,14 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Braintree-2.59.0">
-      <HintPath>..\packages\Braintree.2.59.0\lib\Braintree-2.59.0.dll</HintPath>
+    <Reference Include="Braintree">
+      <HintPath>..\packages\Braintree.3.3.0\lib\net452\Braintree.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
