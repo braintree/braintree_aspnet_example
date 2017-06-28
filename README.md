@@ -14,7 +14,7 @@ to use NuGet package restore, so all dependencies should be automatically instal
 
 ## Running Tests
 
-There are unit and integration tests. To run the integration tests, you will need to have IIS Express and Firefox installed and your API credentials filled in. You can run all the tests by opening the Test Explorer and clicking `Run All`.
+There are unit and integration tests. To run the integration tests, you will need to have IIS Express and Firefox (version 46.x or below) installed and your API credentials filled in. You can run all the tests by opening the Test Explorer and clicking `Run All`.
 
 ## Testing Transactions
 

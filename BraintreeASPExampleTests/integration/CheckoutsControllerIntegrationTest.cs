@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace BraintreeASPExampleTests.integration
 {
@@ -21,12 +22,15 @@ namespace BraintreeASPExampleTests.integration
         private Process _iisProcess;
         IWebDriver driver = new FirefoxDriver();
 
+        private WebDriverWait wait;
+
         [TestInitialize]
         public void TestInitialize()
         {
             StartIIS();
             driver.Manage().Timeouts().SetPageLoadTimeout(timeoutForgiving);
             driver.Manage().Timeouts().ImplicitlyWait(timeoutForgiving);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
         }
 
         [TestCleanup]
@@ -67,23 +71,6 @@ namespace BraintreeASPExampleTests.integration
             return String.Format("http://localhost:{0}{1}", iisPort, relativeUrl);
         }
 
-        private void FillCvvIfPresent()
-        {
-            try
-            {
-                driver.Manage().Timeouts().ImplicitlyWait(timeoutStrict);
-                IWebElement cvvField = driver.FindElement(By.Id("cvv"));
-                cvvField.Click();
-                cvvField.SendKeys("123");
-            }
-            catch (NoSuchElementException){ }
-            finally
-            {
-                driver.Manage().Timeouts().ImplicitlyWait(timeoutForgiving);
-            }
-
-        }
-
         [TestMethod]
         public void TestCheckoutsPageRenders()
         {
@@ -93,12 +80,7 @@ namespace BraintreeASPExampleTests.integration
             Assert.IsTrue(driver.FindElement(By.Id("amount")).Displayed);
             Assert.IsTrue(driver.FindElement(By.XPath("//button[@type='submit']")).Displayed);
 
-            driver.SwitchTo().Frame("braintree-dropin-frame");
-            Assert.IsTrue(driver.FindElement(By.ClassName("inline-frame")).Displayed);
-            driver.FindElement(By.Id("credit-card-number")).Click();
-            Assert.IsTrue(driver.FindElement(By.Id("credit-card-number")).Displayed);
-            driver.FindElement(By.Id("expiration")).Click();
-            Assert.IsTrue(driver.FindElement(By.Id("expiration")).Displayed);
+            Assert.IsTrue(driver.FindElement(By.ClassName("braintree-dropin")).Displayed);
         }
 
         [TestMethod]
@@ -108,14 +90,25 @@ namespace BraintreeASPExampleTests.integration
             driver.FindElement(By.Id("amount")).Clear();
             driver.FindElement(By.Id("amount")).SendKeys("10.00");
 
-            driver.SwitchTo().Frame("braintree-dropin-frame");
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("braintree-option__card")));
+            driver.FindElement(By.ClassName("braintree-option__card")).Click();
+
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("braintree-form__hosted-field")));
+            driver.SwitchTo().Frame("braintree-hosted-field-number");
             driver.FindElement(By.Id("credit-card-number")).Click();
             driver.FindElement(By.Id("credit-card-number")).SendKeys("4242424242424242");
+            driver.SwitchTo().ParentFrame();
+
+            driver.SwitchTo().Frame("braintree-hosted-field-expirationDate");
             driver.FindElement(By.Id("expiration")).Click();
             driver.FindElement(By.Id("expiration")).SendKeys("1020");
-            FillCvvIfPresent();
-
             driver.SwitchTo().ParentFrame();
+
+            driver.SwitchTo().Frame("braintree-hosted-field-cvv");
+            driver.FindElement(By.Id("cvv")).Click();
+            driver.FindElement(By.Id("cvv")).SendKeys("123");
+            driver.SwitchTo().ParentFrame();
+
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
 
             ReadOnlyCollection<IWebElement> headerTags = driver.FindElements(By.TagName("h5"));
@@ -131,15 +124,28 @@ namespace BraintreeASPExampleTests.integration
             driver.FindElement(By.Id("amount")).Clear();
             driver.FindElement(By.Id("amount")).SendKeys("2000.00");
 
-            driver.SwitchTo().Frame("braintree-dropin-frame");
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("braintree-option__card")));
+            driver.FindElement(By.ClassName("braintree-option__card")).Click();
+
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("braintree-form__hosted-field")));
+            driver.SwitchTo().Frame("braintree-hosted-field-number");
             driver.FindElement(By.Id("credit-card-number")).Click();
-            driver.FindElement(By.Id("credit-card-number")).SendKeys("4111111111111111");
+            driver.FindElement(By.Id("credit-card-number")).SendKeys("4242424242424242");
+            driver.SwitchTo().ParentFrame();
+
+            driver.SwitchTo().Frame("braintree-hosted-field-expirationDate");
             driver.FindElement(By.Id("expiration")).Click();
             driver.FindElement(By.Id("expiration")).SendKeys("1020");
-            FillCvvIfPresent();
-
             driver.SwitchTo().ParentFrame();
+
+            driver.SwitchTo().Frame("braintree-hosted-field-cvv");
+            driver.FindElement(By.Id("cvv")).Click();
+            driver.FindElement(By.Id("cvv")).SendKeys("123");
+            driver.SwitchTo().ParentFrame();
+
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
+
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("response")));
 
             Assert.IsTrue(driver.FindElement(By.TagName("h1")).GetAttribute("innerText").Contains("Transaction Failed"));
 
@@ -157,16 +163,29 @@ namespace BraintreeASPExampleTests.integration
             driver.FindElement(By.Id("amount")).Clear();
             driver.FindElement(By.Id("amount")).SendKeys("NaN");
 
-            driver.SwitchTo().Frame("braintree-dropin-frame");
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("braintree-option__card")));
+            driver.FindElement(By.ClassName("braintree-option__card")).Click();
+
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("braintree-form__hosted-field")));
+            driver.SwitchTo().Frame("braintree-hosted-field-number");
             driver.FindElement(By.Id("credit-card-number")).Click();
-            driver.FindElement(By.Id("credit-card-number")).SendKeys("4111111111111111");
+            driver.FindElement(By.Id("credit-card-number")).SendKeys("4242424242424242");
+            driver.SwitchTo().ParentFrame();
+
+            driver.SwitchTo().Frame("braintree-hosted-field-expirationDate");
             driver.FindElement(By.Id("expiration")).Click();
             driver.FindElement(By.Id("expiration")).SendKeys("1020");
-            FillCvvIfPresent();
-
             driver.SwitchTo().ParentFrame();
+
+            driver.SwitchTo().Frame("braintree-hosted-field-cvv");
+            driver.FindElement(By.Id("cvv")).Click();
+            driver.FindElement(By.Id("cvv")).SendKeys("123");
+            driver.SwitchTo().ParentFrame();
+
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
-            
+
+           wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.ClassName("notice-message")));
+
             Assert.IsTrue(driver.FindElement(By.Id("payment-form")).Displayed);
             Assert.IsTrue(driver.FindElement(
                 By.XPath("//*[contains(@class, 'notice-message')]"))
