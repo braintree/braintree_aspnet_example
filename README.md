@@ -2,7 +2,7 @@
 An example Braintree integration for ASP.NET.
 
 ## Setup Instructions
-These instructions assume you are using Visual Studio Professional 2013. This has not been tested in Xamarin Studio, or other versions of Visual Studio. This project is also set up
+These instructions assume you are using Visual Studio Community 2017. This has not been tested in Xamarin Studio, or other versions of Visual Studio. This project is also set up
 to use NuGet package restore, so all dependencies should be automatically installed.
 
 1. Open `braintree_aspnet_example.sln` in Visual Studio.
@@ -36,4 +36,3 @@ Sandbox transactions must be made with [sample credit card numbers](https://deve
 ## Disclaimer
 
 This code is provided as is and is only intended to be used for illustration purposes. This code is not production-ready and is not meant to be used in a production environment. This repository is to be used as a tool to help merchants learn how to integrate with Braintree. Any use of this repository or any of its code in a production environment is highly discouraged.
-
