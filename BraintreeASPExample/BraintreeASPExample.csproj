@@ -44,7 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Braintree">
-      <HintPath>..\packages\Braintree.3.3.0\lib\net452\Braintree.dll</HintPath>
+      <HintPath>..\packages\Braintree.4.1.1\lib\net452\Braintree.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
