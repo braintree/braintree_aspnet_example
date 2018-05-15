@@ -24,7 +24,7 @@ namespace BraintreeASPExample.Controllers
         public ActionResult New()
         {
             var gateway = config.GetGateway();
-            var clientToken = gateway.ClientToken.generate();
+            var clientToken = gateway.ClientToken.Generate();
             ViewBag.ClientToken = clientToken;
             return View();
         }
