@@ -59,10 +59,8 @@
                 </tbody>
             </table>
         </section>
-
         <section>
             <h5>Payment</h5>
-
             <table cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
@@ -96,56 +94,53 @@
                 </tbody>
             </table>
         </section>
-
         @{
-            if (@ViewBag.Transaction.Customer.Id != null) 
-            {
-                <section>
-                    <h5>Customer Details</h5>
-                    <table cellpadding="0" cellspacing="0">
-                        <tbody>
-                            <tr>
-                                <td>id</td>
-                                <td>@ViewBag.Transaction.Customer.Id</td>
-                            </tr>
-                            <tr>
-                                <td>first_name</td>
-                                <td>@ViewBag.Transaction.Customer.FirstName</td>
-                            </tr>
-                            <tr>
-                                <td>last_name</td>
-                                <td>@ViewBag.Transaction.Customer.LastName</td>
-                            </tr>
-                            <tr>
-                                <td>email</td>
-                                <td>@ViewBag.Transaction.Customer.Email</td>
-                            </tr>
-                            <tr>
-                                <td>company</td>
-                                <td>@ViewBag.Transaction.Customer.Company</td>
-                            </tr>
-                            <tr>
-                                <td>website</td>
-                                <td>@ViewBag.Transaction.Customer.Website</td>
-                            </tr>
-                            <tr>
-                                <td>phone</td>
-                                <td>@ViewBag.Transaction.Customer.Phone</td>
-                            </tr>
-                            <tr>
-                                <td>fax</td>
-                                <td>@ViewBag.Transaction.Customer.Fax</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-            }
+        if (@ViewBag.Transaction.CustomerDetails.Id != null)
+        {
+            <section>
+                <h5>Customer Details</h5>
+                <table cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td>id</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.Id</td>
+                        </tr>
+                        <tr>
+                            <td>first_name</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.FirstName</td>
+                        </tr>
+                        <tr>
+                            <td>last_name</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.LastName</td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.Email</td>
+                        </tr>
+                        <tr>
+                            <td>company</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.Company</td>
+                        </tr>
+                        <tr>
+                            <td>website</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.Website</td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.Phone</td>
+                        </tr>
+                        <tr>
+                            <td>fax</td>
+                            <td>@ViewBag.Transaction.CustomerDetails.Fax</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+    }
         }
-
         <section>
             <p class="center small">Integrate with the Braintree SDK for a secure and seamless checkout</p>
         </section>
-
         <section>
             <a class="button secondary full" href="https://developers.braintreepayments.com/guides/drop-in" target="_blank">
                 <span>See the Docs</span>
