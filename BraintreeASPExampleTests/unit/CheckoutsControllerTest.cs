@@ -1,11 +1,7 @@
-﻿using Braintree;
+﻿using System.Web.Mvc;
+using Braintree;
 using BraintreeASPExample;
 using Moq;
-using System;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BraintreeASPExampleTests
@@ -17,7 +13,7 @@ namespace BraintreeASPExampleTests
         public void TestForClientToken()
         {
             var clientTokenMock = new Mock<IClientTokenGateway>();
-            clientTokenMock.Setup(mock => mock.generate(null)).Returns("CLIENT_TOKEN");
+            clientTokenMock.Setup(mock => mock.Generate(null)).Returns("CLIENT_TOKEN");
             var braintreeGatewayMock = new Mock<BraintreeGateway>();
             braintreeGatewayMock.Setup(mock => mock.ClientToken).Returns(clientTokenMock.Object);
             var braintreeConfigurationMock = new Mock<IBraintreeConfiguration>();
