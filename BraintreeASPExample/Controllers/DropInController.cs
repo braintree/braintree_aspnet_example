@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BraintreeASPExample.Controllers
 {
-    public class CheckoutsController : Controller
+    public class DropInController : Controller
     {
         public IBraintreeConfiguration config = new BraintreeConfiguration();
 

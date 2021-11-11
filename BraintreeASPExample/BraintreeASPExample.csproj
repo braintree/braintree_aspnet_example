@@ -121,9 +121,10 @@
   <ItemGroup>
     <Compile Include="App_Code\BraintreeConfiguration.cs" />
     <Compile Include="App_Code\IBraintreeConfiguration.cs" />
-    <Compile Include="Controllers\CheckoutsController.cs">
+    <Compile Include="Controllers\DropInController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,7 +179,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Checkouts\New.cshtml" />
+    <Content Include="Views\DropIn\New.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
@@ -186,7 +187,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Checkouts\Show.cshtml" />
+    <Content Include="Views\DropIn\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\css\app.css.map" />
@@ -213,6 +214,9 @@
     <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.eot" />
     <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.ttf" />
     <Content Include="App_Themes\fonts\open-sans\OpenSans-Semibold-webfont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

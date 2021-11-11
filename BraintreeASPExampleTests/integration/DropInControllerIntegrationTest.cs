@@ -12,7 +12,7 @@ using OpenQA.Selenium.Support.UI;
 namespace BraintreeASPExampleTests.integration
 {
     [TestClass]
-    public class CheckoutsControllerIntegrationTest
+    public class DropInControllerIntegrationTest
     {
         // Setup of IIS server with Selenium from http://stephenwalther.com/archive/2011/12/22/asp-net-mvc-selenium-iisexpress
         private int iisPort = 8080;
@@ -72,7 +72,7 @@ namespace BraintreeASPExampleTests.integration
         }
 
         [TestMethod]
-        public void TestCheckoutsPageRenders()
+        public void TestDropInPageRenders()
         {
             driver.Navigate().GoToUrl(GetAbsoluteUrl("/"));
             Assert.IsTrue(driver.Title.Equals(_applicationName));

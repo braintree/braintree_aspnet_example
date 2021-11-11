@@ -14,36 +14,36 @@ namespace BraintreeASPExample
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Checkouts-New",
-                url: "checkouts/new",
-                defaults: new { controller = "Checkouts", action = "New" },
+                name: "DropIn-New",
+                url: "DropIn/new",
+                defaults: new { controller = "DropIn", action = "New" },
                 constraints: new { httpMethod = new HttpMethodConstraint(new string[]{"GET"}) }
             );
 
              routes.MapRoute(
-                name: "Checkouts",
-                url: "checkouts",
-                defaults: new { controller = "Checkouts", action = "New" },
+                name: "DropIn",
+                url: "DropIn",
+                defaults: new { controller = "DropIn", action = "New" },
                 constraints: new { httpMethod = new HttpMethodConstraint(new string[]{"GET"}) }
             );
 
             routes.MapRoute(
-                name: "Checkouts-Create",
-                url: "checkouts",
-                defaults: new { controller = "Checkouts", action = "Create" },
+                name: "DropIn-Create",
+                url: "DropIn",
+                defaults: new { controller = "DropIn", action = "Create" },
                 constraints: new { httpMethod = new HttpMethodConstraint(new string[] { "POST" }) }
             );
 
             routes.MapRoute(
-                name: "Checkouts-Show",
-                url: "checkouts/{id}",
-                defaults: new { controller = "Checkouts", action = "Show" }
+                name: "DropIn-Show",
+                url: "DropIn/{id}",
+                defaults: new { controller = "DropIn", action = "Show" }
             );
 
             routes.MapRoute(
                 name: "Home",
                 url: "",
-                defaults: new { controller = "Checkouts", action = "New" }
+                defaults: new { controller = "Home", action = "Index" }
             );
         }
     }

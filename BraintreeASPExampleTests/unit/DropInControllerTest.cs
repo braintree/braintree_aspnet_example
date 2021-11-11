@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BraintreeASPExampleTests
 {
     [TestClass]
-    public class CheckoutsControllerTest
+    public class DropInControllerTest
     {
         [TestMethod]
         public void TestForClientToken()
@@ -19,7 +19,7 @@ namespace BraintreeASPExampleTests
             var braintreeConfigurationMock = new Mock<IBraintreeConfiguration>();
             braintreeConfigurationMock.Setup(mock => mock.GetGateway()).Returns(braintreeGatewayMock.Object);
 
-            var controller = new BraintreeASPExample.Controllers.CheckoutsController();
+            var controller = new BraintreeASPExample.Controllers.DropInController();
             controller.config = braintreeConfigurationMock.Object;
             var result = controller.New() as ViewResult;
 
