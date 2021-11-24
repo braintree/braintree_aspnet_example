@@ -8,10 +8,10 @@
         <form id="payment-form" method="post" action="/hosted">
 
             <div class="row">
-                <label for="amount">
+                <label for="payment_amount">
                     <span class="input-label">Amount</span>
                     <div class="input-wrapper amount-wrapper">
-                        <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                        <input id="payment_amount" name="payment_amount" type="tel" min="1" placeholder="payment_amount" value="10">
                     </div>
                 </label>
             </div>
@@ -41,7 +41,7 @@
                 </label>
             </div>
 
-            <input type="hidden" name="nonce" id="nonce" />
+            <input type="hidden" name="payment_method_nonce" id="payment_method_nonce" />
             <button value="submit" id="submit-button" class="btn btn-success btn-lg center-block">
                 Pay
             </button>
@@ -56,6 +56,7 @@
 <script>
     var client_token = "@ViewBag.ClientToken";
     var form = document.querySelector('#payment-form');
+    var nonce = document.querySelector('#payment_method_nonce');
     var submitButton = document.querySelector('#submit-button');
 
     braintree.client.create(

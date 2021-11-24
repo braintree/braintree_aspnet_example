@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="App_Code\BraintreeConfiguration.cs" />
     <Compile Include="App_Code\IBraintreeConfiguration.cs" />
+    <Compile Include="Controllers\ShowController.cs" />
     <Compile Include="Controllers\DropInController.cs">
       <SubType>Code</SubType>
     </Compile>
