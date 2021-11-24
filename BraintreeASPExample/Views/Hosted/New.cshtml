@@ -1,5 +1,121 @@
-﻿@{
-    ViewBag.Title = "New";
-}
+﻿<div class="wrapper">
+    <div class="checkout container">
 
-<h2>New</h2>
+        <header>
+            <h1>Hi, <br>Let's test a transaction with the Hosted Fields provider.</h1>
+        </header>
+
+        <form id="payment-form" method="post" action="/hosted">
+
+            <div class="row">
+                <label for="amount">
+                    <span class="input-label">Amount</span>
+                    <div class="input-wrapper amount-wrapper">
+                        <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                    </div>
+                </label>
+            </div>
+
+            <div class="row">
+                <label for="card-number">
+                    <span class="input-label">Card number</span>
+                    <div class="input-wrapper amount-wrapper">
+                        <input id="card-number" name="card-number" type="text"  placeholder="card-number" value="10">
+                    </div>
+                </label>
+            </div>
+            <div class="row">
+                <label for="cvv">
+                    <span class="input-label">Cvv</span>
+                    <div class="input-wrapper amount-wrapper">
+                        <input id="cvv" name="cvv" type="text"  placeholder="cvv" value="10">
+                    </div>
+                </label>                
+            </div>
+            <div class="row">
+                <label for="expiration-date">
+                    <span class="input-label">Expiration Date</span>
+                    <div class="input-wrapper amount-wrapper">
+                        <input id="expiration-date" name="expiration-date" type="text" placeholder="expiration-date" value="10">
+                    </div>
+                </label>
+            </div>
+
+            <input type="hidden" name="nonce" id="nonce" />
+            <button value="submit" id="submit-button" class="btn btn-success btn-lg center-block">
+                Pay
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<script src="https://js.braintreegateway.com/web/3.82.0/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.82.0/js/hosted-fields.min.js"></script>
+
+<script>
+    var client_token = "@ViewBag.ClientToken";
+    var form = document.querySelector('#payment-form');
+    var submitButton = document.querySelector('#submit-button');
+
+    braintree.client.create(
+        { authorization: client_token },
+        function (clientError, clientInstance) {
+            if (clientError) {
+                console.error(clientError);
+                return;
+            }
+
+            braintree.hostedFields.create({
+                client: clientInstance,
+                styles: {
+                    'input': {
+                        'font-size': '14px'
+                    },
+                    'input.invalid': {
+                        'color': 'red'
+                    },
+                    'input.valid': {
+                        'color': 'green'
+                    }
+                },
+                fields: {
+                    number: {
+                        selector: '#card-number',
+                        placeholder: '4111 1111 1111 1111'
+                    },
+                    cvv: {
+                        selector: '#cvv',
+                        placeholder: '123'
+                    },
+                    expirationDate: {
+                        selector: '#expiration-date',
+                        placeholder: '10/2019'
+                    }
+                }
+            }, function(hostedFieldsError, hostedFieldsInstance) {
+                if (hostedFieldsError) {
+                    console.error(hostedFieldsError);
+                    return;
+                }
+
+                submitButton.removeAttribute('disabled');
+
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+                        if (tokenizeErr) {
+                            console.error(tokenizeErr);
+                            return;
+                        }
+
+                        nonce.value = payload.nonce;
+                        form.submit();
+                    });
+                }, false);
+            });
+        });
+
+
+</script>
