@@ -36,11 +36,11 @@ namespace BraintreeASPExample.Controllers
             decimal amount;
             try
             {
-                amount = decimal.Parse(Request["payment_amount"]);
+                amount = decimal.Parse(Request["amount"]);
             }
             catch
             {
-                var errorMessages = "Unable to read Amount as a Decimal : " + Request["payment_amount"];
+                var errorMessages = "Unable to read Amount as a Decimal : " + Request["amount"];
                 TempData["Flash"] = errorMessages;
                 return RedirectToAction("New");
             }

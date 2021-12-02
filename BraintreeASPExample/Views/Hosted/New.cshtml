@@ -4,40 +4,42 @@
         <header>
             <h1>Hi, <br>Let's test a transaction with the Hosted Fields provider.</h1>
         </header>
-
+        <br/>
+        <br/>
         <form id="payment-form" method="post" action="/hosted">
+            
 
             <div class="row">
-                <label for="payment_amount">
+                <label for="amount">
                     <span class="input-label">Amount</span>
+                    <div class="input-wrapper amount-wrapper">
+                        <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                    </div>
                 </label>
-                <div class="input-wrapper amount-wrapper">
-                    <input id="payment_amount" name="payment_amount" type="tel" min="1" placeholder="10" value="">
-                </div>
             </div>
 
             <div class="row">
-                <label for="card-number">
-                    <span class="input-label">Card number</span>
-                </label>
-                <div class="input-wrapper">
-                    <input id="card-number" name="card-number" type="text" placeholder="4111 1111 1111 1111" value="">
+                <div class="col-sm-6 mb-3">
+                    <label for="cc-number input-label">Credit card number</label>
+
+                    <div class="form-control input-wrapper" id="cc-number"></div>
+                    <div class="invalid-feedback">
+                        Credit card number is required
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label for="cvv">
-                    <span class="input-label">Cvv</span>
-                </label>
-                <div class="input-wrapper">
-                    <input id="cvv" name="cvv" type="text" placeholder="123" value="">
+                <div class="col-sm-3 mb-3">
+                    <label for="cc-expiration input-label">Expiration</label>
+                    <div class="form-control input-wrapper" id="cc-expiration"></div>
+                    <div class="invalid-feedback">
+                        Expiration date required
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label for="expiration-date">
-                    <span class="input-label">Expiration Date</span>
-                </label>
-                <div class="input-wrapper">
-                    <input id="expiration-date" name="expiration-date" type="text" placeholder="12/2025" value="">
+                <div class="col-sm-3 mb-3">
+                    <label for="cc-expiration input-label">CVV</label>
+                    <div class="form-control input-wrapper" id="cc-cvv"></div>
+                    <div class="invalid-feedback">
+                        Security code required
+                    </div>
                 </div>
             </div>
 
@@ -85,16 +87,16 @@
                 },
                 fields: {
                     number: {
-                        selector: '#card-number',
-                        placeholder: "4111 1111 1111 1111"
+                        selector: '#cc-number',
+                        placeholder: '4111 1111 1111 1111'
                     },
                     cvv: {
-                        selector: '#cvv',
-                        placeholder: "123"
+                        selector: '#cc-cvv',
+                        placeholder: '123'
                     },
                     expirationDate: {
-                        selector: '#expiration-date',
-                        placeholder: "12/2025"
+                        selector: '#cc-expiration',
+                        placeholder: 'MM / YY'
                     }
                 }
             };
@@ -105,18 +107,34 @@
                     return;
                 }
                 console.log("Ready");
-                
+
                 submitButton.removeAttribute('disabled');
 
                 form.addEventListener('submit', function (event) {
 
                     event.preventDefault();
+                    let state = hostedFieldsInstance.getState();
+                    let formIsInvalid = false;
+
+                    // Loop through the Hosted Fields and check
+                    // for validity
+                    Object.keys(state.fields).forEach(function(field) {
+                        if (!state.fields[field].isValid) {
+                            console.log("Invalid Container", state.fields[field].container);
+                            formIsInvalid = true;
+                        }
+                    });
+
+                    if (formIsInvalid) {
+                        console.log("Invalid Form");
+                        return;
+                    }
 
                     hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
                         if (tokenizeErr) {
                             console.error("Tokenize Error", tokenizeErr);
                             console.error("Payload", payload);
-                            console.error("Instance", hostedFieldsInstance);
+                            console.error("State", hostedFieldsInstance.getState());
                             return;
                         }
 
