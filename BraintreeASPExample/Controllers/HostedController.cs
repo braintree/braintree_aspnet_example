@@ -29,12 +29,30 @@ namespace BraintreeASPExample.Controllers
             return View();
         }
 
-        public ActionResult Process()
+        public ActionResult Create()
         {
             var gateway = config.GetGateway();
 
-            var amount = Request["payment_amount"];
+            decimal amount;
+            try
+            {
+                amount = decimal.Parse(Request["payment_amount"]);
+            }
+            catch
+            {
+                var errorMessages = "Unable to read Amount as a Decimal : " + Request["payment_amount"];
+                TempData["Flash"] = errorMessages;
+                return RedirectToAction("New");
+            }
+
             var nonce = Request["payment_method_nonce"];
+
+            if (string.IsNullOrEmpty(nonce))
+            {
+                var errorMessages = "Payment Nonce not submitted";
+                TempData["Flash"] = errorMessages;
+                return RedirectToAction("New");
+            }
 
             var request = new TransactionRequest
             {
@@ -50,16 +68,16 @@ namespace BraintreeASPExample.Controllers
             if (result.IsSuccess())
             {
                 Transaction transaction = result.Target;
-                return RedirectToAction("Show", new { id = transaction.Id });
+                return RedirectToAction("Index", "Show", new { id = transaction.Id });
             }
             else if (result.Transaction != null)
             {
-                return RedirectToAction("Show", new { id = result.Transaction.Id });
+                return RedirectToAction("Index", "Show", new { id = result.Transaction.Id });
             }
             else
             {
-                string errorMessages = "";
-                foreach (ValidationError error in result.Errors.DeepAll())
+                var errorMessages = "";
+                foreach (var error in result.Errors.DeepAll())
                 {
                     errorMessages += "Error: " + (int)error.Code + " - " + error.Message + "\n";
                 }

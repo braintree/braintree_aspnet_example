@@ -34,6 +34,8 @@
     var client_token = "@ViewBag.ClientToken";
     var form = document.querySelector('#payment-form');
 
+    console.log("Drop-in sample");
+
     braintree.dropin.create({
         authorization: client_token,
         container: '#bt-dropin',

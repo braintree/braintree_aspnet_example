@@ -35,11 +35,11 @@ namespace BraintreeASPExample
                 constraints: new { httpMethod = new HttpMethodConstraint(new string[] { "POST" }) }
             );
 
-            routes.MapRoute(
-                name: "DropIn-Show",
-                url: "DropIn/{id}",
-                defaults: new { controller = "DropIn", action = "Show" }
-            );
+            //routes.MapRoute(
+            //    name: "DropIn-Show",
+            //    url: "DropIn/{id}",
+            //    defaults: new { controller = "DropIn", action = "Show" }
+            //);
 
             // Hosted Fields Routes
             routes.MapRoute(
@@ -63,10 +63,11 @@ namespace BraintreeASPExample
                 constraints: new { httpMethod = new HttpMethodConstraint(new string[] { "POST" }) }
             );
 
+            // Show Transaction retults
             routes.MapRoute(
-                name: "Hosted-Show",
-                url: "Hosted/{id}",
-                defaults: new { controller = "Hosted", action = "Show" }
+                name: "Show",
+                url: "Show/{id}",
+                defaults: new { controller = "Show", action = "Index" }
             );
 
             routes.MapRoute(

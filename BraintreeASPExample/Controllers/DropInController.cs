@@ -59,11 +59,11 @@ namespace BraintreeASPExample.Controllers
             if (result.IsSuccess())
             {
                 Transaction transaction = result.Target;
-                return RedirectToAction("Show", new { id = transaction.Id });
+                return RedirectToAction("Index", "Show", new { id = transaction.Id });
             }
             else if (result.Transaction != null)
             {
-                return RedirectToAction("Show", new { id = result.Transaction.Id } );
+                return RedirectToAction("Index", "Show", new { id = result.Transaction.Id } );
             }
             else
             {
@@ -78,26 +78,26 @@ namespace BraintreeASPExample.Controllers
 
         }
 
-        public ActionResult Show(String id)
-        {
-            var gateway = config.GetGateway();
-            Transaction transaction = gateway.Transaction.Find(id);
+        //public ActionResult Show(String id)
+        //{
+        //    var gateway = config.GetGateway();
+        //    Transaction transaction = gateway.Transaction.Find(id);
 
-            if (transactionSuccessStatuses.Contains(transaction.Status))
-            {
-                TempData["header"] = "Sweet Success!";
-                TempData["icon"] = "success";
-                TempData["message"] = "Your test transaction has been successfully processed. See the Braintree API response and try again.";
-            }
-            else
-            {
-                 TempData["header"] = "Transaction Failed";
-                 TempData["icon"] = "fail";
-                 TempData["message"] = "Your test transaction has a status of " + transaction.Status + ". See the Braintree API response and try again.";
-             };
+        //    if (transactionSuccessStatuses.Contains(transaction.Status))
+        //    {
+        //        TempData["header"] = "Sweet Success!";
+        //        TempData["icon"] = "success";
+        //        TempData["message"] = "Your test transaction has been successfully processed. See the Braintree API response and try again.";
+        //    }
+        //    else
+        //    {
+        //         TempData["header"] = "Transaction Failed";
+        //         TempData["icon"] = "fail";
+        //         TempData["message"] = "Your test transaction has a status of " + transaction.Status + ". See the Braintree API response and try again.";
+        //     };
 
-            ViewBag.Transaction = transaction;
-            return View();
-        }
+        //    ViewBag.Transaction = transaction;
+        //    return View();
+        //}
     }
 }

@@ -21,7 +21,7 @@ namespace BraintreeASPExample.Controllers
                                                                                     TransactionStatus.SUBMITTED_FOR_SETTLEMENT
                                                                                 };
 
-        public ActionResult Show(String id)
+        public ActionResult Index(String id)
         {
             var gateway = config.GetGateway();
             Transaction transaction = gateway.Transaction.Find(id);
